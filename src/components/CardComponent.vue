@@ -6,9 +6,7 @@
             <img class="rounded-t-lg object-cover" src="../images/lim-deals.jpg" alt="product image" />
         </a>
         <div class="px-5 pb-5 pt-1">
-            <a href="#">
-                <h5 class="text-xl font-semibold tracking-tight text-gray-900 ">Lima</h5>
-            </a>
+            <h5 class="text-xl font-semibold tracking-tight text-gray-900 ">Lima</h5>
             <p class="text-sm">Salida <strong>24/03/2024</strong></p>
             <div class="flex items-center mt-2.5 mb-5">
                 <div class="flex items-center space-x-1 rtl:space-x-reverse">

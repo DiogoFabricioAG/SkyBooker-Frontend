@@ -1,12 +1,13 @@
 <template>
     <nav>
-        <ul class="flex justify-between items-center fixed top-0 w-full px-3 bg-black py-2">
+        <ul class="flex justify-between items-center fixed top-0 w-full px-3 z-20 bg-black py-2">
             <li class="flex space-x-5">
                 <Logo />
                 <span class="text-white space-x-2 font-Mirza flex items-center">
                     <a class="hover:underline" href="#">Inicio</a>
                     <a class="hover:underline" href="#">Caracteristicas</a>
                     <a class="hover:underline" href="#">Precios</a>
+                    <a class="hover:underline" href="#">Afiliados</a>
                     <a class="hover:underline" href="#">Hoteles</a>
                     <a class="hover:underline" href="#">Busqueda</a>
                 </span>

@@ -16,7 +16,7 @@
         </div>
     </section>
     <section class="mt-12">
-        <CascadeStyle />
+        <!--<CascadeStyle /> -->
         <div class="flex flex-col-reverse md:flex-row-reverse">
             <div class="md:w-1/2 flex justify-center flex-col">
                 <h2 class="text-7xl font-Mirza mb-2">¿Buscando un <strong class="text-cyan-400">viaje</strong>?</h2>
@@ -54,10 +54,14 @@
     </section>
     <section>
         <div class="mt-6 px-10 space-y-3">
-            <div>
-                <h2 class="text-3xl font-Mirza ">Aquí nuestros precios</h2>
-                <p class="text-gray-800 font-Outfit text-sm">Revise su destino ideal</p>
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-3xl font-Mirza ">Aquí nuestros precios</h2>
+                    <p class="text-gray-800 font-Outfit text-sm">Revise su destino ideal</p>
+                </div>
+                <MoreComponent />
             </div>
+
 
             <div class="flex flex-wrap justify-center space-x-2">
                 <CardComponent />
@@ -66,6 +70,41 @@
                 <CardComponent />
                 <CardComponent />
                 <CardComponent />
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="mt-6 px-10 space-y-3">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-3xl font-Mirza ">Nuestras Empresas Afiliadas</h2>
+                    <p class="text-gray-800 font-Outfit text-sm">Sientete libre de revisar todos sus vuelos 🛩️</p>
+                </div>
+                <MoreComponent />
+            </div>
+
+            <div class="flex flex-wrap justify-between">
+                <CompanyComponent v-for="(company, index) in companies" :key="index" :text="company.name"
+                    :image="company.get_url" :flag="company.get_flag" />
+
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="mt-6 px-10 space-y-3">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-3xl font-Mirza ">Nuestros Hoteles Afiliadas</h2>
+                    <p class="text-gray-800 font-Outfit text-sm">Busca algun hotel de tu gusto para tu proximo viaje 🏨
+                    </p>
+                </div>
+                <MoreComponent />
+            </div>
+
+            <div class="flex flex-wrap justify-between">
+                <HotelComponent v-for="(hotel, index) in hotels" :key="index" :name="hotel.name" :price="hotel.price"
+                    :flag="hotel.get_flag" :city="hotel.city" :image="hotel.get_image" />
+
             </div>
         </div>
     </section>
@@ -83,11 +122,17 @@ import IconClock from '@/components/icons/IconClock.vue';
 import IconShield from '@/components/icons/IconShield.vue';
 import CascadeStyle from '@/components/others/CascadeStyle.vue';
 import CardComponent from '@/components/CardComponent.vue';
+import axios from 'axios'
+import CompanyComponent from '@/components/CompanyComponent.vue';
+import MoreComponent from '@/components/MoreComponent.vue';
+import HotelComponent from '@/components/HotelComponent.vue';
 
 export default {
     name: "Start",
     components: {
         Logo,
+        MoreComponent,
+        HotelComponent,
         IconDocumentation,
         IconSupport,
         NavComponent,
@@ -98,6 +143,41 @@ export default {
         IconShield,
         CascadeStyle,
         CardComponent,
-    }
+        CompanyComponent,
+    },
+    data() {
+        return {
+            companies: [],
+            hotels: [],
+        }
+    },
+    mounted() {
+        this.get_companies()
+        this.get_hotels()
+    },
+    methods: {
+        async get_companies() {
+            await axios.get("api/companies/")
+                .then(response => {
+                    console.log(response.data);
+                    this.companies = response.data
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        },
+        async get_hotels() {
+            await axios.get("api/hotels/")
+                .then(response => {
+                    console.log(response.data);
+                    this.hotels = response.data
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
+    },
+
+
 }
 </script>
