@@ -1,5 +1,6 @@
 <template>
-    <div class="relative flex bg-clip-border m-2 rounded-xl bg-white text-gray-700 shadow-md w-2/5 flex-row">
+    <div
+        class="relative flex border border-slate-200 hover:shadow-lg duration-150 bg-clip-border m-2 rounded-xl bg-white text-gray-700 shadow-sm w-2/5 flex-row">
         <div
             class="relative w-2/5 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
             <img :src="image" alt="card-image" class="overflow-hidden w-full h-[200px] object-cover " />

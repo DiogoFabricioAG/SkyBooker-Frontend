@@ -1,6 +1,4 @@
 <template>
-
-
     <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg mb-3 hover:shadow-lg duration-150">
         <a href="#">
             <img class="rounded-t-lg object-cover" src="../images/lim-deals.jpg" alt="product image" />

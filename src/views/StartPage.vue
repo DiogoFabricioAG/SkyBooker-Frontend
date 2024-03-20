@@ -16,7 +16,6 @@
         </div>
     </section>
     <section class="mt-12">
-        <!--<CascadeStyle /> -->
         <div class="flex flex-col-reverse md:flex-row-reverse">
             <div class="md:w-1/2 flex justify-center flex-col">
                 <h2 class="text-7xl font-Mirza mb-2">¿Buscando un <strong class="text-cyan-400">viaje</strong>?</h2>
@@ -98,10 +97,10 @@
                     <p class="text-gray-800 font-Outfit text-sm">Busca algun hotel de tu gusto para tu proximo viaje 🏨
                     </p>
                 </div>
-                <MoreComponent />
+                <MoreComponent type="hotels" />
             </div>
 
-            <div class="flex flex-wrap justify-between">
+            <div class="flex flex-wrap justify-center space-x-3">
                 <HotelComponent v-for="(hotel, index) in hotels" :key="index" :name="hotel.name" :price="hotel.price"
                     :flag="hotel.get_flag" :city="hotel.city" :image="hotel.get_image" />
 
@@ -171,6 +170,7 @@ export default {
                 .then(response => {
                     console.log(response.data);
                     this.hotels = response.data
+                    this.hotels = this.hotels.slice(0, 2)
                 })
                 .catch(error => {
                     console.log(error);
