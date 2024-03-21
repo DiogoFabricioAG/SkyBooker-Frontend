@@ -63,12 +63,9 @@
 
 
             <div class="flex flex-wrap justify-center space-x-2">
-                <CardComponent />
-                <CardComponent />
-                <CardComponent />
-                <CardComponent />
-                <CardComponent />
-                <CardComponent />
+                <CardComponent v-for="(flight, index) in flights" :key="index" :price="flight.price"
+                    :image="flight.get_image" :city="flight.city" :fflag="flight.get_f_flag"
+                    :tflag="flight.get_t_flag" />
             </div>
         </div>
     </section>
@@ -79,7 +76,7 @@
                     <h2 class="text-3xl font-Mirza ">Nuestras Empresas Afiliadas</h2>
                     <p class="text-gray-800 font-Outfit text-sm">Sientete libre de revisar todos sus vuelos 🛩️</p>
                 </div>
-                <MoreComponent />
+                <MoreComponent type="companies" />
             </div>
 
             <div class="flex flex-wrap justify-between">
@@ -146,20 +143,34 @@ export default {
     },
     data() {
         return {
+            flights: [],
             companies: [],
             hotels: [],
         }
     },
     mounted() {
+        this.get_flights()
         this.get_companies()
         this.get_hotels()
     },
     methods: {
+        async get_flights() {
+            await axios.get("api/flight/")
+                .then(response => {
+                    console.log(response.data);
+                    this.flights = response.data
+                    this.flights = this.flights.slice(0, 9)
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        },
         async get_companies() {
             await axios.get("api/companies/")
                 .then(response => {
                     console.log(response.data);
                     this.companies = response.data
+                    this.companies = this.companies.slice(0, 3)
                 })
                 .catch(error => {
                     console.log(error);
