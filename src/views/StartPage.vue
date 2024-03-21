@@ -64,8 +64,8 @@
 
             <div class="flex flex-wrap justify-center space-x-2">
                 <CardComponent v-for="(flight, index) in flights" :key="index" :price="flight.price"
-                    :image="flight.get_image" :city="flight.city" :fflag="flight.get_f_flag"
-                    :tflag="flight.get_t_flag" />
+                    :image="flight.get_image" :city="flight.city" :date="flight.get_date" :fflag="flight.get_f_flag"
+                    :tflag="flight.get_t_flag" :idflight="flight.id" />
             </div>
         </div>
     </section>

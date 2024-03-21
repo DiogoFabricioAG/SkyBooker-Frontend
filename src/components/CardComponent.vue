@@ -14,7 +14,7 @@
 
                 </div>
             </div>
-            <p class="text-sm">Salida <strong>24/03/2024</strong></p>
+            <p class="text-sm">Salida <strong>{{ date }}</strong></p>
             <div class="flex items-center mt-2.5 mb-5">
                 <div class="flex items-center space-x-1 rtl:space-x-reverse">
                     <IconStart :active="true" />
@@ -28,9 +28,9 @@
             <p class="text-xs font-Outfit text-gray-500">Desde</p>
             <div class="flex items-center  justify-between">
                 <span class="text-3xl font-bold text-gray-900">${{ price }}</span>
-                <a href="#"
+                <router-link :to="{ name: 'flight', params: { id: idflight } }"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Revisar
-                    Vuelos</a>
+                    Vuelos</router-link>
             </div>
         </div>
     </div>
@@ -44,7 +44,7 @@ import IconStart from './icons/IconStart.vue';
 
 
 export default {
-    props: ["city", "image", "price", "fflag", "tflag"],
+    props: ["city", "image", "price", "date", "fflag", "tflag", "idflight"],
     components: {
         IconStart,
         IconRightArrow,
