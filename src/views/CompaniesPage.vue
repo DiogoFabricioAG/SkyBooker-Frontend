@@ -2,7 +2,7 @@
     <NavComponent />
     <SearchComponent :options="countries" :search="search" :clear="clear" />
     <PaginationComponent :number="page" :goleft="left" :goright="right" :max="maxpages" />
-    <section class="mt-1">
+    <section class="my-3">
         <div class="flex justify-center flex-wrap space-x-2">
             <CompanyComponent v-for="(company, index) in companies.slice((page - 1) * 3, (page) * 3)" :key="index"
                 :text="company.name" :image="company.get_url" :flag="company.get_flag" />
@@ -56,6 +56,8 @@ export default {
             let value = document.getElementById("country")
             this.queryCountry = value.value
             this.companies = this.recover
+            this.page = 1
+
             this.companies = this.companies.filter(company => this.queryCountry === company.getCountry)
             this.maxpages = this.companies.length / 3
 

@@ -4,11 +4,11 @@
             <li class="flex space-x-5">
                 <Logo />
                 <span class="text-white space-x-2 font-Mirza flex items-center">
-                    <a class="hover:underline" href="#">Inicio</a>
-                    <a class="hover:underline" href="#">Caracteristicas</a>
-                    <a class="hover:underline" href="#">Precios</a>
-                    <a class="hover:underline" href="#">Afiliados</a>
-                    <a class="hover:underline" href="#">Hoteles</a>
+                    <a class="hover:underline" href="#inicio">Inicio</a>
+                    <a class="hover:underline" href="#caracteristicas">Caracteristicas</a>
+                    <a class="hover:underline" href="#vuelos">Precios</a>
+                    <a class="hover:underline" href="#empresas">Afiliados</a>
+                    <a class="hover:underline" href="#hoteles">Hoteles</a>
                     <a class="hover:underline" href="#">Busqueda</a>
                 </span>
 

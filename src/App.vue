@@ -10,3 +10,14 @@
 
 
 </template>
+<style is:global>
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduce-motion: reduce) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+</style>

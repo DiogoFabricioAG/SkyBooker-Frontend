@@ -4,7 +4,7 @@
         <article>
             <div class="flex justify-between items-center">
                 <div>
-                    <p class="text-sm text-gray-400 font-Outfit">Vuelo a</p>
+                    <p class="text-sm text-gray-400 font-Outfit">Bienvenido a</p>
                     <h1 class="text-7xl font-Outfit font-bold">{{ flight.city }}</h1>
                 </div>
 
@@ -44,12 +44,13 @@
                             tu vuelo</button>
 
                     </div>
-
+                    <LayoverComponent v-if="layovers.length" :layovers="layovers" />
                 </div>
+
+
             </div>
 
         </article>
-
     </section>
 
 </template>
@@ -63,6 +64,7 @@ import IconUserPremium from '@/components/icons/IconUserPremium.vue'
 import IconCalendar from '@/components/icons/IconCalendar.vue'
 import IconWatch from '@/components/icons/IconWatch.vue'
 import axios from 'axios'
+import LayoverComponent from '@/components/LayoverComponent.vue'
 
 
 export default {
@@ -74,15 +76,18 @@ export default {
         IconUserPremium,
         IconWatch,
         IconCalendar,
+        LayoverComponent,
     },
     data() {
         return {
             flight: {},
-            company: {}
+            company: {},
+            layovers: [],
         }
     },
     mounted() {
         this.get_flight()
+        this.get_layover()
     },
     methods: {
         async get_flight() {
@@ -97,6 +102,23 @@ export default {
                     console.log(error);
                 })
         },
+        async get_layover() {
+            await axios.get(`api/flight/${this.$route.params.id}/layovers`)
+                .then(response => {
+                    let request = response.data
+                    console.log(request);
+                    if (request.data) {
+                        this.layovers = request.data
+                        this.layovers.unshift({
+                            "get_flag": request.get_flag,
+                            "city": request.country
+                        })
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
     },
 }
 </script>

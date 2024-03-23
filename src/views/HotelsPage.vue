@@ -56,6 +56,7 @@ export default {
         search() {
             let value = document.getElementById("country")
             this.queryCountry = value.value
+            this.page = 1
             this.hotels = this.recover
             this.hotels = this.hotels.filter(hotel => this.queryCountry === hotel.getCountry)
             this.maxpages = this.hotels.length / 4

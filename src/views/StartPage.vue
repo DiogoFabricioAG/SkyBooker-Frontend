@@ -1,6 +1,6 @@
 <template>
     <NavComponent />
-    <section>
+    <section id="inicio" class="pt-12">
         <div class="w-full flex-col flex justify-center  mt-4 items-center select-none">
             <img src="../images/logo.png" alt="logo">
             <h1 class="font-Kameron text-5xl font-bold">SkyBooker</h1>
@@ -15,7 +15,7 @@
             </div>
         </div>
     </section>
-    <section class="mt-12">
+    <section id="caracteristicas" class="pb-8 pt-28 ">
         <div class="flex flex-col-reverse md:flex-row-reverse">
             <div class="md:w-1/2 flex justify-center flex-col">
                 <h2 class="text-7xl font-Mirza mb-2">¿Buscando un <strong class="text-cyan-400">viaje</strong>?</h2>
@@ -51,7 +51,7 @@
             </div>
         </div>
     </section>
-    <section>
+    <section id="vuelos" class="py-16">
         <div class="mt-6 px-10 space-y-3">
             <div class="flex justify-between items-center">
                 <div>
@@ -69,7 +69,7 @@
             </div>
         </div>
     </section>
-    <section>
+    <section id="empresas" class="py-16">
         <div class="mt-6 px-10 space-y-3">
             <div class="flex justify-between items-center">
                 <div>
@@ -86,18 +86,19 @@
             </div>
         </div>
     </section>
-    <section>
+    <section id="hoteles" class="py-16">
         <div class="mt-6 px-10 space-y-3">
-            <div class="flex justify-between items-center">
-                <div>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="my-3">
                     <h2 class="text-3xl font-Mirza ">Nuestros Hoteles Afiliadas</h2>
-                    <p class="text-gray-800 font-Outfit text-sm">Busca algun hotel de tu gusto para tu proximo viaje 🏨
+                    <p class="text-gray-800 font-Outfit text-center text-sm">Busca algun hotel de tu gusto para tu
+                        proximo viaje 🏨
                     </p>
                 </div>
                 <MoreComponent type="hotels" />
             </div>
 
-            <div class="flex flex-wrap justify-center space-x-3">
+            <div class="flex flex-wrap flex-col md:flex-row justify-center space-x-3">
                 <HotelComponent v-for="(hotel, index) in hotels" :key="index" :name="hotel.name" :price="hotel.price"
                     :flag="hotel.get_flag" :city="hotel.city" :image="hotel.get_image" />
 
