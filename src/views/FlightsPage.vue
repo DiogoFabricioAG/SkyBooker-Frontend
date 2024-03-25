@@ -1,6 +1,6 @@
 <template>
     <NavComponent />
-    <SearchComponent :options="countries" :search="search" :clear="clear" />
+    <SearchComponent place="Busca tu vuelo soñado" :options="countries" :search="search" :clear="clear" />
     <PaginationComponent :number="page" :goleft="left" :goright="right" :max="maxpages" />
     <div class="flex flex-wrap justify-center space-x-2">
         <CardComponent v-for="(flight, index) in flights.slice((page - 1) * 6, (page) * 6)" :key="index"
@@ -43,24 +43,47 @@ export default {
                     this.flights = response.data
                     this.recover = this.flights
                     this.maxpages = this.flights.length / 6
-                    this.countries = new Set(this.flights.map(flight => flight.getCountry))
+                    this.countries = new Set()
+                    this.countries.add("Seleccione un Pais")
+                    this.flights.forEach(data => {
+                        this.countries.add(data.getCountry)
+                    })
+
                 })
                 .catch(error => {
                     console.log(error);
                 })
         },
-        search() {
+        async search() {
+            let text = document.getElementById("searchmodel")
+            text = text.value
+            if (text) {
+                await axios.get("api/flight/filters?city=" + text.replace(" ", "+"))
+                    .then(response => {
+                        this.flights = response.data
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            }
             let value = document.getElementById("country")
-            this.queryCountry = value.value
-            this.page = 1
-            this.flights = this.recover
-            this.flights = this.flights.filter(hotel => this.queryCountry === hotel.getCountry)
+
+            if (value.value !== "Seleccione un Pais") {
+                this.queryCountry = value.value
+                this.flights = this.flights.filter(hotel => this.queryCountry === hotel.getCountry)
+            }
             this.maxpages = this.flights.length / 6
+            this.page = 1
+
 
         },
         clear() {
             this.flights = this.recover
             this.maxpages = this.flights.length / 6
+            let text = document.getElementById("searchmodel")
+            text.value = ""
+            let value = document.getElementById("country")
+            value.value = "Seleccione un Pais"
         },
         left() {
             this.page--

@@ -1,6 +1,7 @@
 <template>
     <NavComponent />
-    <SearchComponent :options="countries" :search="search" :clear="clear" />
+    <SearchComponent :searchmodel="query" place="Busca tu compañia de vuelos preferida" :options="countries"
+        :search="search" :clear="clear" />
     <PaginationComponent :number="page" :goleft="left" :goright="right" :max="maxpages" />
     <section class="my-3">
         <div class="flex justify-center flex-wrap space-x-2">
@@ -33,6 +34,7 @@ export default {
             maxpages: 0,
             countries: [],
             queryCountry: "",
+            query: "",
         }
     },
     mounted() {
@@ -46,25 +48,48 @@ export default {
                     this.companies = response.data
                     this.recover = this.companies
                     this.maxpages = this.companies.length / 3
-                    this.countries = new Set(this.companies.map(company => company.getCountry))
+                    this.countries = new Set()
+                    this.countries.add("Seleccione un Pais")
+                    this.companies.forEach(data => {
+                        this.countries.add(data.getCountry)
+                    })
                 })
                 .catch(error => {
                     console.log(error);
                 })
         },
-        search() {
+        async search() {
+            let text = document.getElementById("searchmodel")
+            text = text.value
+            if (text) {
+                await axios.get("api/companies/filters?name=" + text.replace(" ", "+"))
+                    .then(response => {
+                        this.companies = response.data
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            }
             let value = document.getElementById("country")
-            this.queryCountry = value.value
-            this.companies = this.recover
-            this.page = 1
+            if (value.value !== "Seleccione un Pais") {
+                this.queryCountry = value.value
 
-            this.companies = this.companies.filter(company => this.queryCountry === company.getCountry)
+                this.companies = this.companies.filter(company => this.queryCountry === company.getCountry)
+
+            }
+            this.page = 1
             this.maxpages = this.companies.length / 3
+
+
 
         },
         clear() {
             this.companies = this.recover
             this.maxpages = this.companies.length / 3
+            let text = document.getElementById("searchmodel")
+            text.value = ""
+            let value = document.getElementById("country")
+            value.value = "Seleccione un Pais"
         },
         left() {
             this.page--

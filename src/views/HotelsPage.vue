@@ -1,6 +1,6 @@
 <template>
     <NavComponent />
-    <SearchComponent :options="countries" :search="search" :clear="clear" />
+    <SearchComponent place="Busca tu hotel predilecto" :options="countries" :search="search" :clear="clear" />
     <PaginationComponent :number="page" :goleft="left" :goright="right" :max="maxpages" />
     <section class="mt-1">
         <div class="flex justify-center flex-wrap space-x-2">
@@ -48,24 +48,47 @@ export default {
                     this.hotels = response.data
                     this.recover = this.hotels
                     this.maxpages = this.hotels.length / 4
-                    this.countries = new Set(this.hotels.map(hotel => hotel.getCountry))
+                    this.countries = new Set()
+                    this.countries.add("Seleccione un Pais")
+                    this.hotels.forEach(data => {
+                        this.countries.add(data.getCountry)
+                    })
                 })
                 .catch(error => {
                     console.log(error);
                 })
         },
-        search() {
+        async search() {
+            let text = document.getElementById("searchmodel")
+            text = text.value
+            if (text) {
+                await axios.get("api/hotels/filters?name=" + text.replace(" ", "+"))
+                    .then(response => {
+                        this.hotels = response.data
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            }
             let value = document.getElementById("country")
-            this.queryCountry = value.value
+            if (value.value !== "Seleccione un Pais") {
+                this.queryCountry = value.value
+                this.hotels = this.hotels.filter(hotel => this.queryCountry === hotel.getCountry)
+
+            }
             this.page = 1
-            this.hotels = this.recover
-            this.hotels = this.hotels.filter(hotel => this.queryCountry === hotel.getCountry)
-            this.maxpages = this.hotels.length / 4
+
+            this.maxpages = this.hotels.length / 3
+
 
         },
         clear() {
             this.hotels = this.recover
             this.maxpages = this.hotels.length / 4
+            let text = document.getElementById("searchmodel")
+            text.value = ""
+            let value = document.getElementById("country")
+            value.value = "Seleccione un Pais"
         },
         left() {
             this.page--

@@ -4,8 +4,8 @@
         <h1 class="font-Outfit text-3xl">Realize su Busqueda</h1>
         <div class="flex justify-between mt-5 items-center">
             <div class="w-4/5 space-x-3 flex">
-                <input type="text" class="font-Outfit border md:w-1/2 border-slate-400 text-sm rounded px-3 py-1"
-                    placeholder="Busque el nombre del Hotel">
+                <input type="text" id="searchmodel"
+                    class="font-Outfit border md:w-1/2 border-slate-400 text-sm rounded px-3 py-1" :placeholder="place">
                 <select name="country" id="country" class="w-1/5 py-0.5">
                     <option v-for="(option, index) in options" :key="index" :value="option">{{ option }}</option>
 
@@ -27,6 +27,6 @@
 
 <script>
 export default {
-    props: ["options", "search", "clear"]
+    props: ["options", "search", "clear", "place"]
 }
 </script>
