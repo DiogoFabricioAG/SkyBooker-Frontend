@@ -5,7 +5,7 @@
     <section class="my-3">
         <div class="flex justify-center flex-wrap space-x-2">
             <CompanyComponent v-for="(company, index) in companies.slice((page - 1) * 3, (page) * 3)" :key="index"
-                :text="company.name" :image="company.get_url" :flag="company.get_flag" />
+                :text="company.name" :idcompany="company.id" :image="company.get_url" :flag="company.get_flag" />
         </div>
 
     </section>

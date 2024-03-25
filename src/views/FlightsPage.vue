@@ -2,34 +2,29 @@
     <NavComponent />
     <SearchComponent :options="countries" :search="search" :clear="clear" />
     <PaginationComponent :number="page" :goleft="left" :goright="right" :max="maxpages" />
-    <section class="mt-1">
-        <div class="flex justify-center flex-wrap space-x-2">
-            <HotelComponent v-for="(hotel, index) in hotels.slice((page - 1) * 4, (page) * 4)" :key="index"
-                :name="hotel.name" :price="hotel.price" :flag="hotel.get_flag" :city="hotel.city"
-                :image="hotel.get_image" :idhotel="hotel.id" />
-
-        </div>
-
-    </section>
+    <div class="flex flex-wrap justify-center space-x-2">
+        <CardComponent v-for="(flight, index) in flights.slice((page - 1) * 6, (page) * 6)" :key="index"
+            :price="flight.price" :image="flight.get_image" :city="flight.city" :date="flight.get_date"
+            :fflag="flight.get_f_flag" :tflag="flight.get_t_flag" :idflight="flight.id" />
+    </div>
 </template>
-
 <script>
-import HotelComponent from '@/components/HotelComponent.vue';
-import NavComponent from '@/components/NavComponent.vue';
+import CardComponent from '@/components/CardComponent.vue';
+import NavComponent from '@/components/NavComponent.vue'
 import PaginationComponent from '@/components/PaginationComponent.vue';
 import SearchComponent from '@/components/SearchComponent.vue';
-import axios from "axios"
 
+import axios from "axios"
 export default {
     components: {
         NavComponent,
         SearchComponent,
-        HotelComponent,
         PaginationComponent,
+        CardComponent,
     },
     data() {
         return {
-            hotels: [],
+            flights: [],
             recover: [],
             page: 1,
             maxpages: 0,
@@ -38,17 +33,17 @@ export default {
         }
     },
     mounted() {
-        this.get_hotels()
+        this.get_flights()
     },
     methods: {
-        async get_hotels() {
-            await axios.get("api/hotels/")
+        async get_flights() {
+            await axios.get("api/flight/")
                 .then(response => {
                     console.log(response.data);
-                    this.hotels = response.data
-                    this.recover = this.hotels
-                    this.maxpages = this.hotels.length / 4
-                    this.countries = new Set(this.hotels.map(hotel => hotel.getCountry))
+                    this.flights = response.data
+                    this.recover = this.flights
+                    this.maxpages = this.flights.length / 6
+                    this.countries = new Set(this.flights.map(flight => flight.getCountry))
                 })
                 .catch(error => {
                     console.log(error);
@@ -58,14 +53,14 @@ export default {
             let value = document.getElementById("country")
             this.queryCountry = value.value
             this.page = 1
-            this.hotels = this.recover
-            this.hotels = this.hotels.filter(hotel => this.queryCountry === hotel.getCountry)
-            this.maxpages = this.hotels.length / 4
+            this.flights = this.recover
+            this.flights = this.flights.filter(hotel => this.queryCountry === hotel.getCountry)
+            this.maxpages = this.flights.length / 6
 
         },
         clear() {
-            this.hotels = this.recover
-            this.maxpages = this.hotels.length / 4
+            this.flights = this.recover
+            this.maxpages = this.flights.length / 6
         },
         left() {
             this.page--
@@ -75,5 +70,4 @@ export default {
         },
     },
 }
-
 </script>

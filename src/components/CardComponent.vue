@@ -1,9 +1,9 @@
 <template>
     <div
         class="w-full max-w-sm flex flex-col justify-between bg-white border border-gray-200 rounded-lg mb-3 hover:shadow-lg duration-150">
-        <a href="#">
+        <router-link :to="{ name: 'flight', params: { id: idflight } }">
             <img class="rounded-t-lg object-cover overflow-hidden h-[200px] w-full" :src="image" alt="product image" />
-        </a>
+        </router-link>
         <div class="px-5 pb-5 pt-1">
             <div class="flex w-full items-center justify-between">
                 <h5 class="text-xl font-semibold tracking-tight text-gray-900 ">{{ city }}</h5>

@@ -1,5 +1,5 @@
 <template>
-    <div
+    <router-link :to="{ name: 'hotel', params: { id: idhotel } }"
         class="relative flex border w-full border-slate-200 hover:shadow-lg duration-150 bg-clip-border m-2 rounded-xl bg-white text-gray-700 shadow-sm md:w-2/5 flex-row">
         <div
             class="relative w-2/5 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
@@ -21,11 +21,11 @@
             <p class="font-Kameron text-xs text-gray-500">Precio</p>
             <p>{{ price }}</p>
         </div>
-    </div>
+    </router-link>
 </template>
 <script>
 export default {
-    props: ["name", "price", "city", "image", "flag"]
+    props: ["name", "price", "city", "image", "flag", "idhotel"]
 }
 
 </script>

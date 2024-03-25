@@ -58,7 +58,7 @@
                     <h2 class="text-3xl font-Mirza ">Aquí nuestros precios</h2>
                     <p class="text-gray-800 font-Outfit text-sm">Revise su destino ideal</p>
                 </div>
-                <MoreComponent />
+                <MoreComponent type="flights" />
             </div>
 
 
@@ -81,7 +81,7 @@
 
             <div class="flex flex-wrap justify-between">
                 <CompanyComponent v-for="(company, index) in companies" :key="index" :text="company.name"
-                    :image="company.get_url" :flag="company.get_flag" />
+                    :image="company.get_url" :flag="company.get_flag" :idcompany="company.id" />
 
             </div>
         </div>
@@ -100,7 +100,7 @@
 
             <div class="flex flex-wrap flex-col md:flex-row justify-center space-x-3">
                 <HotelComponent v-for="(hotel, index) in hotels" :key="index" :name="hotel.name" :price="hotel.price"
-                    :flag="hotel.get_flag" :city="hotel.city" :image="hotel.get_image" />
+                    :flag="hotel.get_flag" :city="hotel.city" :image="hotel.get_image" :idhotel="hotel.id" />
 
             </div>
         </div>
@@ -182,6 +182,7 @@ export default {
                 .then(response => {
                     console.log(response.data);
                     this.hotels = response.data
+                    console.log(response.data);
                     this.hotels = this.hotels.slice(0, 2)
                 })
                 .catch(error => {

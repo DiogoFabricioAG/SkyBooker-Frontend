@@ -1,5 +1,5 @@
 <template>
-    <div
+    <router-link :to="{ name: 'company', params: { id: idcompany } }"
         class="relative flex flex-col border mx-2 border-gray-300 border-opacity-60 hover:shadow-lg text-gray-700  md:w-[30%] mt-4 bg-white duration-150 rounded-xl">
         <div class="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white rounded-xl h-72">
             <img :src="image" alt="profile-picture" class="w-full object-fill" />
@@ -17,7 +17,7 @@
             <IconX href="https://twitter.com/home" />
             <IconInstagram href="https://www.instagram.com" />
         </div>
-    </div>
+    </router-link>
 
 
 </template>
@@ -28,7 +28,7 @@ import IconX from './icons/IconX.vue';
 
 
 export default {
-    props: ["image", "text", "flag"],
+    props: ["image", "text", "flag", "idcompany"],
     components: {
         IconFacebook,
         IconX,

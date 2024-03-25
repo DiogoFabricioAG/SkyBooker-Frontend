@@ -19,9 +19,24 @@ const router = createRouter({
       component: () => import('../views/CompaniesPage.vue')
     },
     {
+      path: '/flights',
+      name: 'flights',
+      component: () => import('../views/FlightsPage.vue')
+    },
+    {
       path: '/flight/:id',
       name: 'flight',
       component: () => import('../views/FlightDetail.vue')
+    },
+    {
+      path: '/company/:id',
+      name: 'company',
+      component: () => import('../views/CompanyDetail.vue')
+    },
+    {
+      path: '/hotel/:id',
+      name: 'hotel',
+      component: () => import('../views/HotelDetail.vue')
     }
   ]
 })
