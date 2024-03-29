@@ -74,8 +74,6 @@ export default {
             }
             this.maxpages = this.flights.length / 6
             this.page = 1
-
-
         },
         clear() {
             this.flights = this.recover

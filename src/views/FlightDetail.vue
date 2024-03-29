@@ -36,9 +36,9 @@
                         <p>Fecha del abordaje: {{ flight.get_date }}</p>
                     </span>
                     <div class="flex flex-col items-end gap-2 mt-2">
-                        <button
+                        <router-link :to="{ name: 'seats', params: { id: this.$route.params.id } }"
                             class="px-3 py-1 bg-green-500 border duration-100 border-green-500 text-white font-Mirza text-sm hover:bg-white hover:text-green-500 rounded">Reservar
-                            tu vuelo</button>
+                            tu vuelo</router-link>
                         <button
                             class="px-3 py-1 bg-red-500 border duration-100 border-red-500 text-white font-Mirza text-sm hover:bg-white hover:text-red-500 rounded">Cancelar
                             tu vuelo</button>
@@ -52,7 +52,6 @@
 
         </article>
     </section>
-
 </template>
 
 <script>

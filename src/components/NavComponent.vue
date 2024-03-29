@@ -1,6 +1,6 @@
 <template>
-    <nav>
-        <ul class="flex justify-between items-center fixed top-0 w-full px-3 z-20 bg-black py-2">
+    <nav class="mb-20">
+        <ul class="flex justify-between items-center  fixed top-0 w-full px-3 z-20 bg-black py-2">
             <li class="flex space-x-5">
                 <Logo />
                 <span class="text-white space-x-2 font-Mirza flex items-center">
