@@ -1,6 +1,6 @@
 <template>
     <NavComponent />
-    <section id="inicio" class="pt-12">
+    <section id="inicio" class="">
         <div class="w-full flex-col flex justify-center  mt-4 items-center select-none">
             <img src="../images/logo.png" alt="logo">
             <h1 class="font-Kameron text-5xl font-bold">SkyBooker</h1>

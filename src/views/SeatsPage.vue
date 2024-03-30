@@ -85,7 +85,7 @@ export default {
             this.seats = []
         },
         async get_tickets() {
-            await axios.get(`api/ticket/${this.$route.params.id}/`)
+            await axios.get(`api/ticket/flight/${this.$route.params.id}/`)
                 .then(response => {
                     this.tickets = response.data
                     this.tickets = this.tickets.map(data => data.seat)
@@ -95,7 +95,7 @@ export default {
                 })
         },
         async submitForm() {
-            await axios.post(`api/ticket/create/${this.$route.params.id}/`, {
+            await axios.post(`api/ticket/flight/create/${this.$route.params.id}/`, {
                 name: this.name,
                 email: this.email,
                 seats: this.seats

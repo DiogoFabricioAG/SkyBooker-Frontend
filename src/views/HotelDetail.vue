@@ -1,6 +1,6 @@
 <template>
     <NavComponent />
-    <section class="pt-20">
+    <section>
         <div class="text-center flex justify-between px-4">
             <span class="font-Mirza flex bg-gray-900 size-32 rounded-full flex-col items-center justify-center">
                 <p class="text-white">A solo</p>
@@ -20,7 +20,7 @@
 
             </span>
         </div>
-        <div class="flex flex-col md:flex-row justify-between w-full p-5">
+        <div class="flex flex-col md:flex-row justify-between w-full p-3">
             <img :src="hotel.get_image" alt="hotel" class="border border-gray-200 w-1/2">
             <div class="w-full flex flex-col justify-center items-center">
                 <span class="text-2xl text-center items-center font-Outfit">
@@ -28,11 +28,9 @@
                     <h3 class="font-bold font-Mirza text-5xl text-blue-400"> {{ hotel.city }}</h3>
                 </span>
                 <div class="w-full flex flex-col font-Mirza  space-y-2 items-center mt-4">
-                    <button
-                        class="block bg-yellow-400 rounded py-3 hover:scale-105 duration-150 px-7 text-2xl text-white">Reservar</button>
-                    <button
-                        class="block bg-purple-500 rounded hover:scale-105 duration-150 py-3 px-7 text-2xl text-white">Cuartos</button>
-
+                    <router-link :to="{ name: 'room', params: { id: $route.params.id } }"
+                        class="block bg-yellow-400 rounded py-1 hover:scale-105 duration-150 px-4 text-lg text-white">Revisar
+                        Cuartos</router-link>
                 </div>
             </div>
         </div>
@@ -49,7 +47,8 @@ export default {
     },
     data() {
         return {
-            hotel: {}
+            hotel: {},
+            myRooms: [],
         }
     },
     mounted() {
