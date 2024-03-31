@@ -43,8 +43,14 @@
 import NavComponent from '@/components/NavComponent.vue';
 import IconSeat from '../components/icons/IconSeat.vue';
 import axios from 'axios';
-
+import { useToastStore } from '@/stores/toast'
 export default {
+    setup() {
+        const toastStore = useToastStore()
+        return {
+            toastStore,
+        }
+    },
     components: {
         NavComponent,
         IconSeat
@@ -101,8 +107,8 @@ export default {
                 seats: this.seats
             })
                 .then(response => {
-                    console.log(response.data);
-                    this.$router.back()
+                    this.toastStore.showToast(5000, 'Se compro el ticket con normalidad 👍', "Check", 'bg-green-200')
+                    this.$router.push({ name: "flight", params: { id: this.$route.params.id } })
                 })
                 .catch(error => {
                     console.log(error);

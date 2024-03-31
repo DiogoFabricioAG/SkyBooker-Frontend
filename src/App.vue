@@ -7,7 +7,7 @@
       </div>
     </div>
   </header>
-
+  <PopupToast />
 
 </template>
 <style is:global>
@@ -21,3 +21,15 @@ html {
   }
 }
 </style>
+
+<script>
+import PopupToast from '@/components/others/PopupToast.vue'
+
+export default {
+
+
+  components: {
+    PopupToast
+  },
+}
+</script>

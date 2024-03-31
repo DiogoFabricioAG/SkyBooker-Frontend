@@ -108,6 +108,7 @@
 
 </template>
 <script>
+
 import NavComponent from '@/components/NavComponent.vue';
 import IconDocumentation from '@/components/icons/IconDocumentation.vue';
 import IconSupport from '@/components/icons/IconSupport.vue';
@@ -123,6 +124,7 @@ import axios from 'axios'
 import CompanyComponent from '@/components/CompanyComponent.vue';
 import MoreComponent from '@/components/MoreComponent.vue';
 import HotelComponent from '@/components/HotelComponent.vue';
+import PopupToast from '@/components/others/PopupToast.vue';
 
 export default {
     name: "Start",
@@ -130,6 +132,7 @@ export default {
         Logo,
         MoreComponent,
         HotelComponent,
+        PopupToast,
         IconDocumentation,
         IconSupport,
         NavComponent,
