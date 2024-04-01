@@ -1,8 +1,9 @@
 <template>
-    <div :id="id" @click="toggleSeat" class="active:scale-90" :class="{ 'pointer-events-none': alreadyBuyed }">
+    <div :id="id" @click="toggleSeat" class="active:scale-90"
+        :class="{ 'pointer-events-none': alreadyBuyed || inactive }">
         <svg width="50px" height="50px" viewBox="0 0 24 24" stroke-width="2" fill="none"
             xmlns="http://www.w3.org/2000/svg" color="#000000" class="  group cursor-pointer"
-            :class="[initialPressed ? 'fill-blue-500' : (alreadyBuyed ? 'fill-yellow-500' : 'fill-white')]">
+            :class="[initialPressed ? 'fill-blue-500' : (alreadyBuyed ? 'fill-yellow-500' : (inactive ? 'fill-green-500' : 'fill-white'))]">
             <path d="M4 18L4 21" stroke="#000000" stroke-width="2" stroke-linecap="round" class=""
                 stroke-linejoin="round">
             </path>
@@ -22,7 +23,7 @@
 </template>
 <script>
 export default {
-    props: ["id", "seats", "tickets"],
+    props: ["id", "seats", "tickets", "inactive"],
 
     computed: {
         initialPressed() {
@@ -30,6 +31,9 @@ export default {
         },
         alreadyBuyed() {
             return this.isBuyed(this.id)
+        },
+        inactive() {
+            return this.isInactive(this.id)
         }
     },
 
@@ -45,6 +49,10 @@ export default {
         },
         isBuyed(id) {
             return this.tickets.includes(id);
+        },
+        isInactive(id) {
+            return this.inactive.includes(id);
+
         }
     }
 }

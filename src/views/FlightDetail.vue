@@ -39,9 +39,9 @@
                         <router-link :to="{ name: 'seats', params: { id: this.$route.params.id } }"
                             class="px-3 py-1 bg-green-500 border duration-100 border-green-500 text-white font-Mirza text-sm hover:bg-white hover:text-green-500 rounded">Reservar
                             tu vuelo</router-link>
-                        <button
+                        <router-link :to="{ name: 'flight-cancelation', params: { 'id': $route.params.id } }"
                             class="px-3 py-1 bg-red-500 border duration-100 border-red-500 text-white font-Mirza text-sm hover:bg-white hover:text-red-500 rounded">Cancelar
-                            tu vuelo</button>
+                            tu vuelo</router-link>
 
                     </div>
                     <LayoverComponent v-if="layovers.length" :layovers="layovers" />

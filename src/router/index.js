@@ -34,7 +34,12 @@ const router = createRouter({
       component: () => import('../views/FlightDetail.vue')
     },
     {
-      path: '/flight/confirm',
+      path: '/flight/:id/cancelation',
+      name: 'flight-cancelation',
+      component: () => import('../views/FlightCancelation.vue')
+    },
+    {
+      path: '/confirm',
       name: 'confirm',
       component: () => import('../views/FlightConfirm.vue')
     },

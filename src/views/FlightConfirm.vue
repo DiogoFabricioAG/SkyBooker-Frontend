@@ -18,16 +18,32 @@ export default {
     },
     methods: {
         async confirm() {
-            await axios.post(`api/ticket/flight/confirm/${this.$route.query.email}/`)
-                .then(response => {
-                    this.toastStore.showToast(5000, response.data.message, "Check", 'bg-green-200')
-                    this.$router.push({ name: "start" })
-                })
-                .catch(error => {
-                    this.toastStore.showToast(5000, 'Ocurrio un problema con su compra 😔', "Wrong", 'bg-red-200')
-                    this.$router.push({ name: "start" })
-                })
+            console.log(this.$route.query.flight)
+            if (this.$route.query.flight === "true") {
+                await axios.post(`api/ticket/flight/confirm/${this.$route.query.email}/`)
+                    .then(response => {
+                        this.toastStore.showToast(5000, response.data.message, "Check", 'bg-green-200')
+                        this.$router.push({ name: "start" })
+                    })
+                    .catch(error => {
+                        this.toastStore.showToast(5000, 'Ocurrio un problema con su compra 😔', "Wrong", 'bg-red-200')
+                        this.$router.push({ name: "start" })
+                    })
+            }
+            else {
+                await axios.post(`api/ticket/booking/confirm/${this.$route.query.email}/`)
+                    .then(response => {
+                        this.toastStore.showToast(5000, response.data.message, "Check", 'bg-green-200')
+                        this.$router.push({ name: "start" })
+                    })
+                    .catch(error => {
+                        this.toastStore.showToast(5000, 'Ocurrio un problema con su compra 😔', "Wrong", 'bg-red-200')
+                        this.$router.push({ name: "start" })
+                    })
+            }
         }
     }
+
 }
+
 </script>

@@ -29,7 +29,7 @@
             </div>
             <div class="flex-col flex justify-center" v-for="(item, index) in 11" :key="index">
                 <IconSeat v-if="item !== 6" v-for="(another, indexx) in 7" :id="item + '-' + another" :seats="seats"
-                    :tickets="tickets" :key="indexx" @seat-clicked="handleSeatClicked" />
+                    :tickets="tickets" :inactive="inactive" :key="indexx" @seat-clicked="handleSeatClicked" />
                 <div v-else class="w-12">
 
                 </div>
@@ -61,6 +61,7 @@ export default {
             seats: [],
             tickets: [],
             name: "",
+            inactive: [],
             email: "",
         }
     },
@@ -93,8 +94,11 @@ export default {
         async get_tickets() {
             await axios.get(`api/ticket/flight/${this.$route.params.id}/`)
                 .then(response => {
-                    this.tickets = response.data
+                    this.tickets = response.data.active
                     this.tickets = this.tickets.map(data => data.seat)
+                    this.inactive = response.data.inactive
+                    this.inactive = this.inactive.map(data => data.seat)
+
                 })
                 .catch(error => {
                     console.log(error);
