@@ -16,9 +16,7 @@ const store = useToastStore()
         <span>
             <p>{{ store.message }}</p>
         </span>
-        <button class="p-0.5 rounded-sm hover:scale-90 duration-150">
-            <IconClose />
-        </button>
+
     </div>
 
 </template>
@@ -26,7 +24,6 @@ const store = useToastStore()
 <script>
 import IconAlert from '../icons/IconAlert.vue';
 import IconCheck from '../icons/IconCheck.vue';
-import IconClose from '../icons/IconClose.vue';
 import IconWrong from '../icons/IconWrong.vue';
 
 
@@ -34,7 +31,6 @@ export default {
     components: {
         IconAlert,
         IconCheck,
-        IconClose,
         IconWrong,
     }
 }

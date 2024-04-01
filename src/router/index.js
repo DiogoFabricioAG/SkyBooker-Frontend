@@ -34,6 +34,11 @@ const router = createRouter({
       component: () => import('../views/FlightDetail.vue')
     },
     {
+      path: '/flight/confirm',
+      name: 'confirm',
+      component: () => import('../views/FlightConfirm.vue')
+    },
+    {
       path: '/company/:id',
       name: 'company',
       component: () => import('../views/CompanyDetail.vue')

@@ -107,7 +107,7 @@ export default {
                 seats: this.seats
             })
                 .then(response => {
-                    this.toastStore.showToast(5000, 'Se compro el ticket con normalidad 👍', "Check", 'bg-green-200')
+                    this.toastStore.showToast(5000, 'Se compro el ticket con normalidad 👍. Revise su correo para confirmar', "Check", 'bg-green-200')
                     this.$router.push({ name: "flight", params: { id: this.$route.params.id } })
                 })
                 .catch(error => {

@@ -53,11 +53,18 @@
 import axios from 'axios';
 import NavComponent from '@/components/NavComponent.vue'
 import IconDoorMain from '@/components/icons/IconDoorMain.vue';
+import { useToastStore } from '@/stores/toast';
 
 export default {
     components: {
         NavComponent,
         IconDoorMain,
+    },
+    setup() {
+        const toastStore = useToastStore()
+        return {
+            toastStore,
+        }
     },
     name: "room",
     data() {
@@ -115,8 +122,8 @@ export default {
                 rooms: this.rooms,
             })
                 .then(response => {
-                    console.log(response.data);
-                    this.$router.back()
+                    this.toastStore.showToast(5000, 'Se compro el ticket con normalidad 👍', "Check", 'bg-green-200')
+                    this.$router.push({ name: 'hotel', params: { id: this.$route.params.id } })
                 })
                 .catch(error => {
                     console.log(error);
