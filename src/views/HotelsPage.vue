@@ -100,3 +100,8 @@ export default {
 }
 
 </script>
+<style scoped>
+.pointer-events-none {
+    pointer-events: none
+}
+</style>

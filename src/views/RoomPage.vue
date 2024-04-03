@@ -37,7 +37,8 @@
             <div class="flex mt-4 space-x-2 justify-center">
                 <div class="flex-col flex  " v-for="(letter, index) in letters" :key="index">
                     <IconDoorMain v-for="(item, index) in 6" :key="index" :tickets="tickets"
-                        @room-clicked="handledRoomClicked" :id="letter + '-' + item" :rooms="rooms" />
+                        @room-clicked="handledRoomClicked" :reservation="reservation" :id="letter + '-' + item"
+                        :rooms="rooms" />
                 </div>
 
             </div>
@@ -72,6 +73,7 @@ export default {
             hotel: {},
             rooms: [],
             tickets: [],
+            reservation: [],
             name: "",
             email: "",
             date: "",
@@ -105,9 +107,12 @@ export default {
         async get_booking() {
             await axios.get(`api/ticket/booking/${this.$route.params.id}/`)
                 .then(response => {
-                    this.tickets = response.data
+                    this.tickets = response.data.active
                     this.tickets = this.tickets.map(data => data.room)
+                    this.reservation = response.data.inactive
+                    this.reservation = this.reservation.map(data => data.room)
                     console.log(this.tickets);
+                    console.log(this.reservation);
                 })
                 .catch(error => {
                     console.log(error);

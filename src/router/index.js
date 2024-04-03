@@ -39,6 +39,11 @@ const router = createRouter({
       component: () => import('../views/FlightCancelation.vue')
     },
     {
+      path: '/hotel/:id/cancelation',
+      name: 'hotel-cancelation',
+      component: () => import('../views/HotelCancelation.vue')
+    },
+    {
       path: '/confirm',
       name: 'confirm',
       component: () => import('../views/FlightConfirm.vue')

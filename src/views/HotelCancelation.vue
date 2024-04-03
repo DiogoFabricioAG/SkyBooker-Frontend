@@ -2,7 +2,7 @@
     <NavComponent />
     <section>
         <div class="text-center">
-            <h2 class="font-Kameron text-2xl font-bold">Cancelar Reservacion</h2>
+            <h2 class="font-Kameron text-2xl font-bold">Cancelar Vuelo</h2>
             <form class="font-Mirza flex flex-col items-center" action="." @submit.prevent="get_data" method="post"
                 enctype="multipart/form-data">
                 <div class="flex flex-col items-center space-y-2 w-full">
@@ -30,9 +30,10 @@
     </section>
     <section v-if="data.length">
         <div class="border-2 w-4/5 mx-auto mt-4 border-black rounded-lg px-3 py-2 overflow-y-auto h-80">
-            <h2>Lista de Habitaciones</h2>
-            <CancelationComponent v-for="(ticket, index) in data" :key="index" :name="ticket.flight.city"
-                :seat="ticket.seat" :date="ticket.flight.get_date" :id="id" @ticket-delete="delete_ticket(ticket.id)" />
+            <h2>Lista de Vuelos</h2>
+            <CancelationComponent v-for="(booking, index) in data" :key="index" canceltype="Hotel"
+                :name="booking.hotel.name" :seat="booking.room" :date="booking.date" :id="id"
+                @ticket-delete="delete_ticket(booking.id)" />
         </div>
     </section>
 
@@ -57,19 +58,20 @@ export default {
     },
     methods: {
         async get_data() {
-            await axios.post('api/ticket/flight/cancel/', {
+            await axios.post('api/ticket/booking/cancel/', {
                 code: this.code,
                 email: this.email
             })
                 .then(response => {
                     this.data = response.data
+                    console.log(response.data);
                 })
                 .catch(error => {
                     console.log(error);
                 })
         },
         async delete_ticket(id) {
-            await axios.delete(`api/ticket/flight/delete/${id}/`)
+            await axios.delete(`api/ticket/booking/delete/${id}/`)
                 .then(response => {
                     this.data = this.data.filter(data => data.id !== id)
                 })

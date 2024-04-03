@@ -2,7 +2,9 @@
 
     <div class="shadow-md flex items-center">
         <div>
-            <img src="../images/TICKET.png" alt="Ticket" class="w-2/5">
+            <img src="../images/TICKET.png" v-if="canceltype !== 'Hotel'" alt="Ticket" class="w-2/5">
+            <img src="../images/KEY.png" v-else alt="Ticket" class="w-2/5">
+
         </div>
         <div class="w-2/5 flex flex-col font-Kameron justify-start items-start">
             <h3 class="text-xl font-bold">{{ name }}</h3>
@@ -22,7 +24,7 @@
 
 <script>
 export default {
-    props: ["date", "name", "seat", "id"],
+    props: ["date", "name", "seat", "id", "canceltype"],
 
     methods: {
         delete_ticket() {

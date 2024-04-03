@@ -31,6 +31,9 @@
                     <router-link :to="{ name: 'room', params: { id: $route.params.id } }"
                         class="block bg-yellow-400 rounded py-1 hover:scale-105 duration-150 px-4 text-lg text-white">Revisar
                         Cuartos</router-link>
+                    <router-link :to="{ name: 'hotel-cancelation', params: { id: $route.params.id } }"
+                        class="block bg-gray-400 rounded py-1 hover:scale-105 duration-150 px-4 text-lg text-white">
+                        Cancelar Reservaciones</router-link>
                 </div>
             </div>
         </div>
