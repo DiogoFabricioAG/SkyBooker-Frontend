@@ -14,12 +14,12 @@
 
             </li>
             <li class="flex space-x-1">
-                <button
+                <router-link :to="{ name: 'credits' }"
                     class="font-Mirza flex space-x-2 bg-purple-900 text-white p-2 rounded duration-150 hover:bg-purple-700">
                     <span>Creditos</span>
 
                     <IconCredits />
-                </button>
+                </router-link>
                 <button
                     class="font-Mirza bg-blue-800 text-white p-2 rounded duration-150 flex items-center space-x-2 hover:bg-blue-600">
                     <span>Centro de

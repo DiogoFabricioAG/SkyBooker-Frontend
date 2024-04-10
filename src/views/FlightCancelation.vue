@@ -30,7 +30,7 @@
     </section>
     <section v-if="data.length">
         <div class="border-2 w-4/5 mx-auto mt-4 border-black rounded-lg px-3 py-2 overflow-y-auto h-80">
-            <h2>Lista de Habitaciones</h2>
+            <h2 class="text-center font-Kameron text-2xl">Lista de Habitaciones</h2>
             <CancelationComponent v-for="(ticket, index) in data" :key="index" :name="ticket.flight.city"
                 :seat="ticket.seat" :date="ticket.flight.get_date" :id="id" @ticket-delete="delete_ticket(ticket.id)" />
         </div>

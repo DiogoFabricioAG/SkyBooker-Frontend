@@ -49,6 +49,11 @@ const router = createRouter({
       component: () => import('../views/FlightConfirm.vue')
     },
     {
+      path: '/credits',
+      name: 'credits',
+      component: () => import('../views/CreditsPage.vue')
+    },
+    {
       path: '/company/:id',
       name: 'company',
       component: () => import('../views/CompanyDetail.vue')
